@@ -1,7 +1,5 @@
 APP_ENV = ENV['APP_ENV'] || 'development'
-require 'bundler'
-Bundler.setup(APP_ENV.to_sym)
-require 'resque'
+require 'config/initializer'
 require 'resque/tasks'
 
 task "resque:setup" do
