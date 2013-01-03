@@ -6,7 +6,7 @@ gem 'json', '1.7.5'
 gem 'httparty', '0.9.0'
 gem 'middleware', '0.1.0'
 
-group :development do
+group :development, :test do
   gem 'pry'
 end
 

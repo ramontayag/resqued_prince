@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class DownloadMiddleware
 
   def initialize(app)
@@ -6,7 +8,18 @@ class DownloadMiddleware
 
   def call(env)
     response = HTTParty.get(env[:source_url])
-    response.body
+    FileUtils.mkdir_p('tmp')
+
+    random_str = ::SecureRandom.hex(16)
+    file_path = File.join("tmp", "source_#{random_str}.html")
+
+    File.open(file_path, 'w') do |f|
+      f.puts response.body
+    end
+
+    @app.call(env)
+
+    {:html_path => file_path}
   end
 
 end

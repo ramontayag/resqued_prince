@@ -1,1 +1,2 @@
-config/resque.yml
+/config/resque.yml
+/tmp
