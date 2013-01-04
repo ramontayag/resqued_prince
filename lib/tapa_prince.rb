@@ -1,9 +1,9 @@
 module TapaPrince
   extend self
 
-  def from_string_to_file
-    converter = TapaPrince::Converter.new
-    converter.from_string_to_file
+  def convert(html, options={})
+    converter = TapaPrince::Converter.new(html, options)
+    converter.convert
   end
 
 end
