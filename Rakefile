@@ -1,5 +1,6 @@
 APP_ENV = ENV['APP_ENV'] || 'development'
-require 'config/initializer'
+$: << File.join(File.dirname(__FILE__), 'lib')
+require File.join(File.dirname(__FILE__), 'config', 'initializer')
 require 'resque/tasks'
 
 task "resque:setup" do
