@@ -10,6 +10,7 @@ gem 'nokogiri', '1.5.5'
 
 group :development, :test do
   gem 'pry'
+  gem 'sinatra'
 end
 
 group :test do

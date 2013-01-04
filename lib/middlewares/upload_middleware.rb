@@ -10,11 +10,11 @@ class UploadMiddleware
   end
 
   def before_call(env)
-    HTTMultiParty.post(
+    response = HTTMultiParty.post(
       env[:destination_url],
       :query => {:file => env[:pdf_path]}
     )
-    env
+    env.merge(:upload_status => response.code)
   end
 
 end

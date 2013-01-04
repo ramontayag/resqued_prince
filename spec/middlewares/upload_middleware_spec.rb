@@ -6,11 +6,13 @@ describe UploadMiddleware do
       use UploadMiddleware
     end
 
+    response = double(code: 201)
     HTTMultiParty.should_receive(:post).
-      with("http://post.com", :query => { :file => 'tmp/sample.pdf' })
+      with("http://post.com", :query => { :file => 'tmp/sample.pdf' }).
+      and_return(response)
 
     stack_response = stack.call(:pdf_path => "tmp/sample.pdf",
                                 :destination_url => 'http://post.com')
-
+    stack_response[:upload_status].should == 201
   end
 end

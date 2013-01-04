@@ -17,9 +17,9 @@ class DownloadMiddleware
       f.puts response.body
     end
 
-    @app.call(env)
+    env[:html_path] = file_path
 
-    {:html_path => file_path}
+    @app.call(env)
   end
 
 end
